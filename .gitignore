@@ -1,0 +1,37 @@
+# AI-generated context (regenerate on demand)
+.ai/context/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+
+
+
+
+
+# Build outputs
+dist/
+build/
+out/
+*.egg-info/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Logs
+*.log
+logs/
