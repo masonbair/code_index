@@ -28,6 +28,11 @@ build/
 out/
 *.egg-info/
 
+# Rust
+/target/
+Cargo.lock
+*.db
+
 # Testing
 coverage/
 .nyc_output/

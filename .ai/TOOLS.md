@@ -1,8 +1,8 @@
 # Available AI Agent Tools
 
-**Auto-generated:** 2026-04-21
+**Auto-generated:** 2026-04-30
 **System:** Arch Linux
-**Tools Detected:** 0 of 4 installed
+**Tools Detected:** 1 of 4 installed
 
 This file is a registry of custom tools available on this system for AI agent workflows.
 
@@ -15,7 +15,7 @@ This file is a registry of custom tools available on this system for AI agent wo
 
 ❌ **ContextQuery** - NOT INSTALLED
 
-❌ **CodeIndex** - NOT INSTALLED
+✅ **CodeIndex** - INSTALLED (v0.1.0 with call graph, implementations, usages tracking)
 
 ❌ **ContextPacker** - NOT INSTALLED
 
@@ -72,19 +72,46 @@ context-query --pattern "async function.*database" --type structural
 
 ### 3. CodeIndex
 
-**Status:** ❌ Not Installed
+**Status:** ✅ Installed (v0.1.0)
 
-**Purpose:** Persistent semantic index (symbol table, dependency graph, file metadata)
+**Purpose:** Persistent semantic index with call graphs, implementations, and usage tracking
 
 **Usage:**
 ```bash
-code-index daemon --watch .
+# Index a directory
+code-index index .
+
+# Start daemon (background watching)
+code-index daemon start --watch .
+
+# Query symbols
+code-index query symbol <name>
+
+# Find callers of a function
+code-index query callers <function>
+
+# Find functions called by a function
+code-index query callees <function>
+
+# Find trait implementations
+code-index query implements <trait>
+
+# Find what traits a type implements
+code-index query traits <type>
+
+# Find usages of a symbol
+code-index query usages <symbol>
+
+# Find unused symbols
+code-index query unused
+
+# View statistics
+code-index stats
 ```
 
+**Output:** JSON (with --json flag) or human-readable format with symbols, dependencies, call relationships, implementations, usages.
 
-**Output:** JSON with symbols, dependencies, metadata.
-
-**AI Agent Note:** This is the backend for ContextQuery and CodeSummarizer. It's likely already running.
+**AI Agent Note:** Use this for instant code navigation. Query callers/callees for impact analysis. Use usages to find all references.
 
 
 ---
@@ -124,4 +151,11 @@ context-packer --query "implement feature" --budget 8000 --format claude
 
 If any tools show as "NOT INSTALLED", they can be built from specs or request installation instructions from the user.
 
-**Current Status:** 0/4 tools installed
+**Current Status:** 1/4 tools installed
+
+### Recently Added Features (CodeIndex v0.1.0)
+
+- **Call graph tracking**: Find callers and callees of any function
+- **Implementation tracking**: Find all types implementing a trait
+- **Usage tracking**: Find all references to any symbol
+- **Unused symbol detection**: Find potentially dead code
